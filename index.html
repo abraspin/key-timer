@@ -10,26 +10,32 @@
 <body>
     
     <h1> hello werld </h1>
-<button id = "testBtn"> press here </button>
-<form> 
-    <input>
-
-</form>
-
+<h5>I press the "<span id = "keyToPressEl"></span>" key every <span id = "intervalEl"></span> milliseconds.</h5>
+    <div id = "counterEl"> </div>
+<input>
 </body>
 </html>
 
 
 <script> 
 $( document ).ready(function() {
+let counter = 0;
 
+/////////////////////////////////
+let keyToPress = 'a';
+let interval = 20000;
+/////////////////////////////////
 
+$("#keyToPressEl").html(keyToPress);
+$("#intervalEl").html(interval);
 
 window.setInterval(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown',{'key':'a'}));
-    console.log("I did it")
-    window.dispatchEvent(new KeyboardEvent('keyup',{'key':'a'}));
-}, 20000);
+    window.dispatchEvent(new KeyboardEvent('keydown',{'key':keyToPress}));
+    $("#counterEl").html("testing " + counter);
+$("#counterEl").html((`I pressed "${keyToPress}" ${counter} times`));
+    window.dispatchEvent(new KeyboardEvent('keyup',{'key':keyToPress}));
+    counter++;
+}, interval);
 
 });
 </script>
